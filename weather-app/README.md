@@ -6,8 +6,7 @@ Une petite application React qui permet d'afficher la météo d'une ville choisi
 ---
 
 ## Le widget est disponible sur le lien suivant
-https://weather-widget-r167z3i7q-nicolas-bourahouis-projects.vercel.app/
-
+https://weather-widget-rho-ten.vercel.app/
 
 ---
 
