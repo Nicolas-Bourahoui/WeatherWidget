@@ -14,7 +14,7 @@ const API_KEY = "a0fcfa9c5f6bbe98ab9a91e9f8e40266";
  */
 
 
-const WeatherWidget = ({city, lang = "fr", units = "metrics" }) => {
+const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
   // States pour stocker les données météo, le chargement et les erreurs
   const [weather, setWeather]  = useState(null);
   const [loading, setLoading]  = useState(true);
@@ -59,17 +59,17 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics" }) => {
 
       {/* Température principale */}
       <p className={styles.temp}>
-        Température : {Math.round(weather.main.temp)}{temperatureUnit}
+        {labels.temperature} : {Math.round(weather.main.temp)}{temperatureUnit}
       </p>
 
       {/* Description des conditions météo (ex: "nuageux") */}
-      <p>Conditions : {weather.weather[0].description}</p>
+      <p> {labels.conditions} : {weather.weather[0].description}</p>
 
       {/* Humidité en pourcentage */}
-      <p>Humidité : {weather.main.humidity}%</p>
+      <p> {labels.humidity} : {weather.main.humidity}%</p>
 
       {/* Couverture nuageuse en pourcentage */}
-      <p>Nuages : {weather.clouds.all}%</p>
+      <p> {labels.clouds} : {weather.clouds.all}%</p>
     </div>
   );
 };

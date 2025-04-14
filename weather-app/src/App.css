@@ -23,9 +23,29 @@ h1 {
   font-size: 16px;
 }
 
+.weather-form input {
+  margin-right: 0px;
+}
+
 .weather-form input:focus,
 .weather-form select:focus {
   outline: none;
   border-color: #0077ff;
   box-shadow: 0 0 3px #0077ff66;
+}
+
+.weather-form button {
+  padding: 8px 12px;
+  font-size: 16px;
+  margin-right: 10px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.weather-form button:hover {
+  background-color: #005fcc;
 }
