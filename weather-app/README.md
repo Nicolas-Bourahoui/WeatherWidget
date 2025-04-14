@@ -2,6 +2,13 @@
 
 Une petite application React qui permet d'afficher la météo d'une ville choisie, avec prise en charge multilingue (FR/EN) et adaptation du fond selon la météo.
 
+
+---
+
+## Le widget est disponible sur le lien suivant
+https://weather-widget-r167z3i7q-nicolas-bourahouis-projects.vercel.app/
+
+
 ---
 
 ## 🚀 Lancer le projet en local
@@ -9,7 +16,7 @@ Une petite application React qui permet d'afficher la météo d'une ville choisi
 ### 1. Cloner le dépôt
 ```bash
 git clone https://github.com/Nicolas-Bourahoui/WeatherWidget.git
-cd WeatherWidget
+cd WeatherWidget/weather-app
 ```
 
 ### 2. Installer les dépendances
@@ -22,7 +29,6 @@ Sinon installer Node.js ici : https://nodejs.org/en puis faites les commandes pr
 
 
 ### 3. Lancer l'application
-Si Node.js est déjà installé
 ```bash
 npm start
 ```
