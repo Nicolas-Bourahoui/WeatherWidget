@@ -61,6 +61,16 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
 
   return (
     <div className={styles.widget}>
+
+      {/* Image en fonction de la météo */}
+      <div className={styles.iconWrapper}>
+        <img
+          src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+          alt={weather.weather[0].description}
+          className={styles.weatherIcon}
+        />
+      </div>
+
       {/* Nom de la ville */}
       <h2 className={styles.city}>{weather.name}</h2>
 
