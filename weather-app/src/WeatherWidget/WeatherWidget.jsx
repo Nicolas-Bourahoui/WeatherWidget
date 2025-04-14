@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import styles from "./WeatherWidget.css";
+import styles from "./WeatherWidget.module.css";
 
 
 // Clé API OpenWeatherMap
@@ -14,11 +14,17 @@ const API_KEY = "a0fcfa9c5f6bbe98ab9a91e9f8e40266";
  */
 
 
-const WeatherWidget = ({city, lang = "fr", units = "metrics" }) => {
+const WeatherWidget = ({city, lang = "fr", units = "metrics", labels, onWeatherTypeChange }) => {
   // States pour stocker les données météo, le chargement et les erreurs
   const [weather, setWeather]  = useState(null);
   const [loading, setLoading]  = useState(true);
   const [error, setError]  = useState("");
+
+  // Pour convertir les timestamp UNIX en heure
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleTimeString(lang === "fr" ? "fr-FR" : "en-US" , {hour: "2-digit", minute: "2-digit",})
+  };
 
   // Effet à chaque changement de paramètres
   useEffect(() => {
@@ -42,6 +48,7 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics" }) => {
     };
 
     fetchWeather();
+    
   }, [city, lang, units]);
 
   // Gestion de l'affichage en fonction de l'état de chargement ou d'erreur
@@ -49,27 +56,54 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics" }) => {
   if (error) return <div className={styles.widget}>{error}</div>;
   if (!weather) return null;
 
-  // Unité de température à afficher
+  // On passe le type de météo à App.js
+  onWeatherTypeChange(weather.weather[0].main);
+   
+  // Unité à afficher
   const temperatureUnit = units === "metric" ? "°C" : "°F";
+  const windUnit = units === "metric" ? "km/h" : "mph";
+
 
   return (
     <div className={styles.widget}>
+
+      {/* Image en fonction de la météo */}
+      <div className={styles.iconWrapper}>
+        <img
+          src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+          alt={weather.weather[0].description}
+          className={styles.weatherIcon}
+        />
+      </div>
+
       {/* Nom de la ville */}
       <h2 className={styles.city}>{weather.name}</h2>
 
-      {/* Température principale */}
+      {/* Température */}
       <p className={styles.temp}>
-        Température : {Math.round(weather.main.temp)}{temperatureUnit}
+        {labels.temperature} : {Math.round(weather.main.temp)}{temperatureUnit}
+      </p>
+      <p className={styles.temp}>
+        {labels.feels_like} : {Math.round(weather.main.feels_like)}{temperatureUnit}
       </p>
 
       {/* Description des conditions météo (ex: "nuageux") */}
-      <p>Conditions : {weather.weather[0].description}</p>
+      <p> {labels.conditions} : {weather.weather[0].description}</p>
 
       {/* Humidité en pourcentage */}
-      <p>Humidité : {weather.main.humidity}%</p>
+      <p> {labels.humidity} : {weather.main.humidity}%</p>
 
       {/* Couverture nuageuse en pourcentage */}
-      <p>Nuages : {weather.clouds.all}%</p>
+      <p> {labels.clouds} : {weather.clouds.all}%</p>
+
+      {/* Vitesse du vent */}  
+      <p> {labels.wind} : {(weather.wind.speed * (units === "metric" ? 3.6 : 1)).toFixed(1)} {windUnit}</p>
+      
+      {/* Heure du lever de soleil */}
+      <p> {labels.sunrise} : {formatTime(weather.sys.sunrise)}</p>
+     
+      {/* Heure du coucher de soleil */}
+      <p> {labels.sunset} : {formatTime(weather.sys.sunset)}</p>
     </div>
   );
 };

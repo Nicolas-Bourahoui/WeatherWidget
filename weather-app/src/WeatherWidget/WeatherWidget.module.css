@@ -1,0 +1,74 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.widget {
+  animation: fadeIn 0.6s ease forwards;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  color: #ffffff;
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.city {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.weatherIcon {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+  animation: popIn 0.4s ease forwards;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 500px) {
+  .widget {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .city {
+    font-size: 1.5rem;
+  }
+}
