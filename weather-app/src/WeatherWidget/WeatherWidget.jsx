@@ -14,7 +14,7 @@ const API_KEY = "a0fcfa9c5f6bbe98ab9a91e9f8e40266";
  */
 
 
-const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
+const WeatherWidget = ({city, lang = "fr", units = "metrics", labels, onWeatherTypeChange }) => {
   // States pour stocker les données météo, le chargement et les erreurs
   const [weather, setWeather]  = useState(null);
   const [loading, setLoading]  = useState(true);
@@ -48,6 +48,7 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
     };
 
     fetchWeather();
+    
   }, [city, lang, units]);
 
   // Gestion de l'affichage en fonction de l'état de chargement ou d'erreur
@@ -55,9 +56,13 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
   if (error) return <div className={styles.widget}>{error}</div>;
   if (!weather) return null;
 
-  // Unité de température à afficher
+  // On passe le type de météo à App.js
+  onWeatherTypeChange(weather.weather[0].main);
+   
+  // Unité à afficher
   const temperatureUnit = units === "metric" ? "°C" : "°F";
   const windUnit = units === "metric" ? "km/h" : "mph";
+
 
   return (
     <div className={styles.widget}>

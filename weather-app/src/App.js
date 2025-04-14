@@ -43,6 +43,24 @@ function App() {
     }
   };
 
+    // Fonction pour changer le fond en fonction du type de météo
+    const updateBackground = (weatherType) => {
+      const body = document.body;
+      if (weatherType === "Clear") {
+        body.style.background = "linear-gradient(135deg, #FFB75E, #ED8F03)";
+      } else if (weatherType === "Clouds") {
+        body.style.background = "linear-gradient(135deg, #B3B3B3, #777777)";
+      } else if (weatherType === "Rain") {
+        body.style.background = "linear-gradient(135deg, #00BFFF, #4682B4)";
+      } else if (weatherType === "Snow") {
+        body.style.background = "linear-gradient(135deg, #F0F8FF, #B0E0E6)";
+      } else if (weatherType === "Thunderstorm") {
+        body.style.background = "linear-gradient(135deg, #333333, #000000)";
+      } else {
+        body.style.background = "linear-gradient(135deg, #E6E6E6, #A9A9A9)";
+      }
+    };
+
   return (
     <div className="app-container">
       <h1>{t.title}</h1>
@@ -88,7 +106,8 @@ function App() {
         sunset: lang === "fr" ? "Coucher du soleil" : "Sunset",
         loading: lang === "fr" ? "Chargement..." : "Loading...",
         error: lang === "fr" ? "Impossible de récupérer les données météo." : "Unable to fetch weather data.",
-      }}/>
+      }}
+      onWeatherTypeChange={updateBackground}/>
     </div>
   );
 }
