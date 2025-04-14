@@ -20,6 +20,12 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
   const [loading, setLoading]  = useState(true);
   const [error, setError]  = useState("");
 
+  // Pour convertir les timestamp UNIX en heure
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleTimeString(lang === "fr" ? "fr-FR" : "en-US" , {hour: "2-digit", minute: "2-digit",})
+  };
+
   // Effet à chaque changement de paramètres
   useEffect(() => {
     const fetchWeather = async () => {
@@ -51,15 +57,19 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
 
   // Unité de température à afficher
   const temperatureUnit = units === "metric" ? "°C" : "°F";
+  const windUnit = units === "metric" ? "km/h" : "mph";
 
   return (
     <div className={styles.widget}>
       {/* Nom de la ville */}
       <h2 className={styles.city}>{weather.name}</h2>
 
-      {/* Température principale */}
+      {/* Température */}
       <p className={styles.temp}>
         {labels.temperature} : {Math.round(weather.main.temp)}{temperatureUnit}
+      </p>
+      <p className={styles.temp}>
+        {labels.feels_like} : {Math.round(weather.main.feels_like)}{temperatureUnit}
       </p>
 
       {/* Description des conditions météo (ex: "nuageux") */}
@@ -70,6 +80,15 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels }) => {
 
       {/* Couverture nuageuse en pourcentage */}
       <p> {labels.clouds} : {weather.clouds.all}%</p>
+
+      {/* Vitesse du vent */}  
+      <p> {labels.wind} : {(weather.wind.speed * (units === "metric" ? 3.6 : 1)).toFixed(1)} {windUnit}</p>
+      
+      {/* Heure du lever de soleil */}
+      <p> {labels.sunrise} : {formatTime(weather.sys.sunrise)}</p>
+     
+      {/* Heure du coucher de soleil */}
+      <p> {labels.sunset} : {formatTime(weather.sys.sunset)}</p>
     </div>
   );
 };

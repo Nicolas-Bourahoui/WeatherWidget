@@ -84,6 +84,10 @@ function App() {
         humidity: lang === "fr" ? "Humidité" : "Humidity",
         clouds: lang === "fr" ? "Nuages" : "Clouds",
         conditions: lang === "fr" ? "Conditions" : "Conditions",
+        feels_like: lang === "fr" ? "Ressentie" : "Feels like",
+        wind: lang === "fr" ? "Vent" : "Wind",
+        sunrise: lang === "fr" ? "Lever du soleil" : "Sunrise",
+        sunset: lang === "fr" ? "Coucher du soleil" : "Sunset",
         loading: lang === "fr" ? "Chargement..." : "Loading...",
         error: lang === "fr" ? "Impossible de récupérer les données météo." : "Unable to fetch weather data.",
       }}/>
