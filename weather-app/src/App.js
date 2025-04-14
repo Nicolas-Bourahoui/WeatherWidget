@@ -58,7 +58,7 @@ function App() {
         />
 
         {/* Bouton Rechercher */}
-        <button type="submit">{t.search}</button>
+        <button type="submit" title={t.search}>🔍</button>
 
         {/* Choix langue */}
         <select value={lang} onChange={(e) => setLang(e.target.value)}>

@@ -14,25 +14,28 @@ body {
   text-align: center;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
 .weather-form {
   margin-bottom: 2rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.weather-form input,
-.weather-form select {
+.weather-form input{
   padding: 10px 14px;
   border-radius: 10px;
   border: none;
   font-size: 1rem;
-  width: 200px;
+  width: 220px;
+}
+
+.weather-form select {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: none;
 }
 
 .weather-form input:focus,
@@ -43,13 +46,14 @@ h1 {
 }
 
 .weather-form button {
-  padding: 10px 16px;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #0077ff;
+  background: #fff;
   border: none;
   border-radius: 10px;
+  padding: 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.3s ease;
 }
 
