@@ -51,14 +51,12 @@ function App() {
       <form onSubmit={handleSearch} className="weather-form">
         {/* Champ ville */}
         <input
-          type="text"
+          type="search"
           value={cityInput}
           onChange={(e) => setCityInput(e.target.value)}
           placeholder={t.placeholder}
+          aria-label={t.search}
         />
-
-        {/* Bouton Rechercher */}
-        <button type="submit" title={t.search}>🔍</button>
 
         {/* Choix langue */}
         <select value={lang} onChange={(e) => setLang(e.target.value)}>
