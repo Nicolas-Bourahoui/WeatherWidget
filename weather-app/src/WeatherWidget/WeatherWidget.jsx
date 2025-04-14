@@ -32,7 +32,7 @@ const WeatherWidget = ({city, lang = "fr", units = "metrics", labels, onWeatherT
       setLoading(true); // Effet de chargement
       try {
         // URL de l'API 
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=${lang}&units=${units}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=${lang}&units=${units}`;
         // Requête axios
         const response = await axios.get(url);
         // On stocke les données dans l'état
